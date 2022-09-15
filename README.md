@@ -9,4 +9,4 @@
 
 [Playstore link](https://play.google.com/store/apps/details?id=com.deventhusiast.kophecy)
 
-![playstore screenshot](assets/img/playstore-1.png)
+![playstore screenshot](assets/img/playstore-1.jpeg)
