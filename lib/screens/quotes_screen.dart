@@ -1,0 +1,120 @@
+import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:jiffy/jiffy.dart';
+import 'package:kophecy/utils/constants.dart';
+import 'package:kophecy/utils/text_styles.dart';
+import 'package:kophecy/view_models/quote_view_model.dart';
+import 'package:kophecy/views/base_view.dart';
+import 'package:kophecy/widgets/w_quote_card.dart';
+import 'package:provider/provider.dart';
+import 'package:sizer/sizer.dart';
+import 'package:tcard/tcard.dart';
+
+class QuotesScreen extends StatefulWidget {
+  const QuotesScreen({required Key key}) : super(key: key);
+
+  @override
+  State<QuotesScreen> createState() => _QuotesScreenState();
+}
+
+class _QuotesScreenState extends State<QuotesScreen> {
+  final TCardController _controller = TCardController();
+
+  @override
+  Widget build(BuildContext context) => BaseView<QuoteViewModel>(
+        key: UniqueKey(),
+        vmBuilder: (context) => Provider.of<QuoteViewModel>(context),
+        builder: _buildScreen,
+      );
+
+  Widget _buildScreen(BuildContext context, QuoteViewModel quoteViewModel) =>
+      ListView(
+        physics: const BouncingScrollPhysics(),
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 24.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  Jiffy().yMMMEd.toString(),
+                  style: TextStyles.textStyle.apply(
+                    color: Theme.of(context)
+                        .textTheme
+                        .bodyText1
+                        ?.color
+                        ?.withOpacity(
+                          .5,
+                        ),
+                    fontSizeDelta: -4,
+                  ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+
+                Text(
+                  Constants.slogan,
+                  style: TextStyles.textStyle.apply(
+                    color: Theme.of(context).textTheme.bodyText1?.color,
+                    fontWeightDelta: 5,
+                    fontSizeDelta: 2,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 24,
+          ),
+          /*SizedBox(
+            width: 100.w,
+            height: 60.h,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) => SizedBox(
+                width: 100.w,
+                height: 60.h,
+                child: WQuoteCard(
+                  key: UniqueKey(),
+                  quote: quoteViewModel.quotes[index],
+                  viewModel: quoteViewModel,
+                ),
+              ),
+              itemCount: quoteViewModel.total
+            ),
+          ),*/
+
+          Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 6,
+            ),
+            child: TCard(
+              size: Size(
+                100.w,
+                64.h,
+              ),
+              controller: _controller,
+              cards: quoteViewModel.quotes
+                  .map(
+                    (quote) => WQuoteCard(
+                      key: UniqueKey(),
+                      quote: quote,
+                      viewModel: quoteViewModel,
+                      onTranslate: () => {},
+                    ),
+                  )
+                  .toList(),
+              onForward: (index, info) {},
+              onBack: (index, info) {},
+              onEnd: () {
+                debugPrint('end');
+
+                //fetch all
+                quoteViewModel.fetchAll();
+              },
+            ),
+          ),
+        ],
+      );
+}

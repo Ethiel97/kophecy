@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1087862828777",
+    "project_id": "kophecy",
+    "storage_bucket": "kophecy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1087862828777:android:7b2164d788ea40fe840a78",
+        "android_client_info": {
+          "package_name": "com.deventhusiast.kophecy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1087862828777-0ep103r6lkfh4sk2i124nte0jja2g15u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArJJF87MFifmYoi8fI98N10kLYeQqSCHw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1087862828777-0ep103r6lkfh4sk2i124nte0jja2g15u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
