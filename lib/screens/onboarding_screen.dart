@@ -19,17 +19,17 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
   List<IntroScreen> pages = [
     IntroScreen(
-      title: AppLocalizations.of(Get.context!)!.daily_boost,
-      imageAsset: 'assets/img/1-dark.png',
-      description: AppLocalizations.of(Get.context!)!.quotes_to_boost_you,
+      title: AppLocalizations.of(Get.context!)!.daily_fuel,
+      imageAsset: 'assets/img/1.png',
+      description: AppLocalizations.of(Get.context!)!.sop_everyday,
       headerBgColor: Colors.white,
       textStyle: TextStyles.textStyle,
     ),
     IntroScreen(
-      title: AppLocalizations.of(Get.context!)!.intellect,
+      title: AppLocalizations.of(Get.context!)!.strengthen_faith,
       headerBgColor: Colors.white,
-      imageAsset: 'assets/img/2-dark.png',
-      description: AppLocalizations.of(Get.context!)!.enrich_knowledge,
+      imageAsset: 'assets/img/2.png',
+      description: AppLocalizations.of(Get.context!)!.strengthen_faith_description,
       textStyle: TextStyles.textStyle,
     ),
   ];

@@ -1,9 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:flutter/services.dart';
 import 'package:kophecy/firebase_options.dart';
 import 'package:kophecy/main.dart';
 import 'package:kophecy/models/author.dart';
@@ -27,7 +27,9 @@ class Startup {
       DeviceOrientation.portraitDown,
     ]);
 
-    await Firebase.initializeApp();
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
     FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
     _initHiveBox();
     await dotenv.load(fileName: '.env');

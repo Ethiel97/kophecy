@@ -4,6 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:kophecy/models/quote.dart';
+import 'package:kophecy/models/tag.dart';
 import 'package:kophecy/providers/auth_provider.dart';
 import 'package:kophecy/providers/navigation_provider.dart';
 import 'package:kophecy/providers/theme_provider.dart';
@@ -85,11 +86,10 @@ mixin QuoteUI {
                         .map(
                           (e) => GestureDetector(
                             onTap: () {
-                              /*navigationProvider.currentIndex = 1;
-
-                                  Tag tag =
-                                  viewModel.tags.firstWhere((tag) => tag.name == e);
-                                  viewModel.selectTag(tag);*/
+                              Tag tag = viewModel.tags
+                                  .firstWhere((tag) => tag.name == e.name);
+                              viewModel.selectTag(tag);
+                              navigationProvider.currentIndex = 1;
                             },
                             child: Text(
                               "#${e.name}",

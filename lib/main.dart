@@ -84,7 +84,8 @@ class _MyAppState extends State<MyApp> {
 
   initDynamicLinkService() {
     Future.delayed(Duration.zero, () {
-      _dynamicLinkService = Provider.of<DynamicLinkService>(context,listen: false);
+      _dynamicLinkService =
+          Provider.of<DynamicLinkService>(context, listen: false);
 
       _dynamicLinkService.handleDynamicLinks().then(
             (value) => print('Ready to handle dynamic links'),

@@ -1,5 +1,5 @@
 {
-  "daily_fuel": "Your daily fuel \uD83D\uDE0E",
+  "daily_fuel": "Your daily fuel",
   "search_here": "Search here",
   "favorite_quote": "Your favorite quotes \uD83D\uDE0B",
   "no_saved_quotes": "No saved quotes",
@@ -29,7 +29,7 @@
   "delete_account": "Delete account",
   "yes_logout": "Yes, logout",
   "logout": "Logout",
-  "delete":"Delete",
+  "delete": "Delete",
   "account_delete_success": "Account successfully deleted",
   "login": "Login",
   "register": "Register",
@@ -40,6 +40,7 @@
   "validate": "Validate",
   "create_account": "Create an account",
   "no_account": "No account ?",
-  "sop_everyday": "Spirit of prophecy in daily life"
-
+  "sop_everyday": "Spirit of prophecy in daily life",
+  "strengthen_faith_description": "Get best spirit of prophecy quotes to strengthen your faith",
+  "strengthen_faith": "Strengthen your faith"
 }

@@ -12,7 +12,7 @@ class Constants {
       "L'esprit de prophétie au quotidien 😎";
   static const String shareQuoteEvent = 'SHARE_QUOTE_EVENT';
   static const String dailyRandomQuoteTopic = 'DAILY_RANDOM_QUOTE_TOPIC';
-  static const String testTopic = 'TEST_TOPIC';
+  static const String testTopic = 'MY_TEST_TOPIC';
   static String slogan =
       '${AppLocalizations.of(Get.context!)?.sop_everyday} 😋';
   static const kDuration = 300;

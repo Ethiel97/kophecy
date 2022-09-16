@@ -74,8 +74,10 @@ class _MainScreenState extends State<MainScreen> {
     _firebaseMessaging.subscribeToTopic(Constants.dailyRandomQuoteTopic);
     _firebaseMessaging.subscribeToTopic(Constants.testTopic);
 
+    NotificationService.setupInteractedMessage();
+
     FirebaseMessaging.onMessage.listen((event) {
-      NotificationService(event, context: Get.context!).showToast();
+      NotificationService(event).showToast();
     });
 
     if (Platform.isIOS) {

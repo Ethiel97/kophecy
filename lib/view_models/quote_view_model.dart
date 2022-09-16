@@ -106,7 +106,7 @@ class QuoteViewModel extends BaseViewModel {
   }
 
   selectTag(Tag tag) async {
-    if (selectedTags.where((el) => el.name == tag.name).isEmpty) {
+    if (!selectedTags.contains(tag)) {
       selectedTags.add(tag);
       reloadState();
       // notifyListeners();
@@ -121,16 +121,24 @@ class QuoteViewModel extends BaseViewModel {
 
   filterQuotes(String query) async {
     if (query.isNotEmpty) {
-      debouncing(fn: () {
+      selectedTags.clear();
+      reloadState();
+      debouncing(fn: () async {
         // filteredQuotes.clear();
         changeStatus();
-        filteredQuotes = quotes
-            .where((element) =>
-                element.content.toLowerCase().contains(query.toLowerCase()))
-            .toList();
-        changeStatus();
+
+        await Future.microtask(() {
+          filteredQuotes = quotes
+              .where((element) =>
+                  element.content.toLowerCase().contains(query.toLowerCase()))
+              .toList();
+          changeStatus();
+        });
         // reloadState();
       });
+    } else {
+      filteredQuotes.clear();
+      reloadState();
     }
   }
 
@@ -140,18 +148,21 @@ class QuoteViewModel extends BaseViewModel {
       // String tags = selectedTags.map((e) => e.id).toList().join("|");
       List<int> tags = selectedTags.map((e) => e.id).toList();
 
-      // filteredQuotes.clear();
+      filteredQuotes.clear();
+      await Future.delayed(const Duration(milliseconds: Constants.kDuration));
       // filteredQuotes = (await apiRepository.getQuotesForTag(tags));
 
-      for (quote in quotes) {
-        for (int tag in tags) {
-          if (quote.tagIds.contains(tag)) {
-            filteredQuotes.add(quote);
+      Future.microtask(() {
+        for (quote in quotes) {
+          for (int tag in tags) {
+            if (quote.tagIds.contains(tag)) {
+              filteredQuotes.add(quote);
+            }
           }
         }
-      }
+      });
 
-      //remove duplicates from filtered quotes
+      ///remove duplicates from filtered quotes
       filteredQuotes = filteredQuotes.toSet().toList();
 
       // filteredQuotes.shuffle();

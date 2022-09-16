@@ -1,5 +1,5 @@
 {
-  "daily_fuel": "Ton carburant quotidien \uD83D\uDE0E",
+  "daily_fuel": "Ton carburant quotidien",
   "search_here": "Recherchez ici",
   "favorite_quote": "Citations préférées \uD83D\uDE0B",
   "no_saved_quotes": "Aucune citation préférée",
@@ -41,5 +41,7 @@
   "successful_operation": "Operation réussie",
   "email_or_username_taken": "Email ou nom d'utilisateur déjà pris",
   "sop_everyday": "L'esprit de prophétie au quotidien",
-  "error_occurred": "Une erreur est survenue. Veuillez réessayer plus tard svp!"
+  "error_occurred": "Une erreur est survenue. Veuillez réessayer plus tard svp!",
+  "strengthen_faith_description": "Renforcez votre foi avec les meilleures citations de l'esprit de prophétie.\n",
+  "strengthen_faith": "Affermis ta foi"
 }
