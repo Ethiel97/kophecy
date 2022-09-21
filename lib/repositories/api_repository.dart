@@ -180,14 +180,13 @@ class APIRepository implements IRepository {
 
   Future<String> translateToAppLocale({
     required String text,
-    String source = "en",
+    String source = "fr",
     required String target,
-  }) async {
-    return (target != "en")
-        ? (await GoogleTranslator().translate(text, from: source, to: target))
-            .text
-        : text;
-  }
+  }) async =>
+      (target != source)
+          ? (await GoogleTranslator().translate(text, from: source, to: target))
+              .text
+          : text;
 
   @override
   Future<List<Quote>> getQuotesForTag(String? tags) async {

@@ -15,14 +15,11 @@ import 'package:kophecy/repositories/api_repository.dart';
 import 'package:kophecy/utils/constants.dart';
 import 'package:kophecy/utils/extensions.dart';
 import 'package:kophecy/utils/log.dart';
-import 'package:kophecy/utils/text_styles.dart';
 import 'package:kophecy/widgets/quote_detail.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:sizer/sizer.dart';
-import 'package:tinycolor2/tinycolor2.dart';
 
 import 'base_view_model.dart';
 
@@ -315,12 +312,13 @@ class QuoteViewModel extends BaseViewModel {
   }
 
   void translateQuote(Quote quote) async {
+    selectedQuote = quote;
+    reloadState();
     try {
       // changeStatus();
       isLoading = true;
       String translatedText = await apiRepository.translateToAppLocale(
         text: quote.content,
-        source: "en",
         target: defaultLocale ?? "en",
       );
 
@@ -412,8 +410,21 @@ class QuoteViewModel extends BaseViewModel {
     }
   }
 
-  showTranslateModal(String text) {
-    showModalBottomSheet(
+  void showTranslateModal(String translatedText) {
+    selectedQuote = selectedQuote.copyWith(content: translatedText);
+    reloadState();
+
+    Get.bottomSheet(
+      SizedBox(
+        height: Get.height * 2,
+        child: QuoteDetail(
+          viewModel: this,
+          userCanTranslate: false,
+        ),
+      ),
+    );
+
+    /*showModalBottomSheet(
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(12),
@@ -424,8 +435,8 @@ class QuoteViewModel extends BaseViewModel {
       context: Get.context!,
       builder: (context) => Container(
         alignment: Alignment.centerLeft,
-        padding: const EdgeInsets.all(14),
-        height: 24.h,
+        padding: const EdgeInsets.all(20),
+        height: 55.h,
         width: 100.w,
         decoration: BoxDecoration(
           color: Theme.of(context).backgroundColor,
@@ -463,7 +474,7 @@ class QuoteViewModel extends BaseViewModel {
           ],
         ),
       ),
-    );
+    );*/
   }
 
   fetchSavedQuotes() async {

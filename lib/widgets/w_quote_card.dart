@@ -1,10 +1,8 @@
-import 'package:eventify/eventify.dart' as event;
 import 'package:flutter/material.dart';
 import 'package:kophecy/models/quote.dart';
 import 'package:kophecy/utils/constants.dart';
 import 'package:kophecy/view_models/quote_view_model.dart';
 import 'package:kophecy/widgets/quote_ui.dart';
-import 'package:provider/provider.dart';
 
 class WQuoteCard extends StatefulWidget with QuoteUI {
   WQuoteCard({
@@ -31,13 +29,10 @@ class _WQuoteCardState extends State<WQuoteCard> {
   void initState() {
     super.initState();
 
-    Future.delayed(Duration.zero, () {
-      Provider.of<event.EventEmitter>(context, listen: false)
-          .on(Constants.shareQuoteEvent, this, eventListener);
-    });
+    widget.initWidgetState(eventListener);
   }
 
-  eventListener(ev, cont) async {
+  void eventListener(ev, cont) async {
     if (null != ev) {
       switch (ev.eventName) {
         case Constants.shareQuoteEvent:

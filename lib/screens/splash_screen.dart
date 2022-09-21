@@ -80,7 +80,8 @@ class _SplashScreenState extends State<SplashScreen>
           return Container(
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/img/splash.jpg'),
+                image: AssetImage('assets/img/splash.webp'),
+                alignment: Alignment.bottomCenter,
                 fit: BoxFit.cover,
               ),
             ),
