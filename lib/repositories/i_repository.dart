@@ -7,7 +7,7 @@ abstract class IRepository<T> {
 
   Future<List<Author>> getAuthors({Map<String, dynamic> query = const {}});
 
-  Future<Quote> getSingleQuote(String quoteId);
+  Future<Quote> getSingleQuote(int quoteId);
 
   Future<Author> getSingleAuthor(String authorId);
 

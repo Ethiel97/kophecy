@@ -70,6 +70,11 @@ class QuoteViewModel extends BaseViewModel {
 
   @override
   FutureOr<void> init() async {
+    try {
+      await Hive.openBox(quotesBox);
+    } catch (e) {
+      // LogUtils.log(e);
+    }
     boxQuotes = Hive.box(quotesBox);
     // await getRandomQuote();
 

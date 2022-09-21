@@ -129,20 +129,21 @@ class APIRepository implements IRepository {
   }
 
   @override
+  Future<Quote> getSingleQuote(int quoteId) async {
+    String url = 'quotes/$quoteId';
+
+    final response = await dio.get(apiUrl + url);
+
+    return Quote.fromJson(response.data);
+  }
+
+  @override
   Future<List<Quote>> getQuotesForAuthor(String authorId) async {
     String url = 'quotes?$authorId';
 
     final response = await dio.get(apiUrl + url);
 
     return List<Quote>.from(response.data.map((x) => Quote.fromJson(x)));
-  }
-
-  @override
-  Future<Quote> getSingleQuote(String quoteId) async {
-    String url = "quotes/$quoteId";
-    final response = await dio.get(apiUrl + url);
-
-    return Quote.fromJson(response.data);
   }
 
   @override

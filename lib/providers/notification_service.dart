@@ -2,9 +2,12 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:kophecy/models/quote.dart';
+import 'package:kophecy/repositories/api_repository.dart';
 import 'package:kophecy/utils/app_router.dart';
 import 'package:kophecy/utils/colors.dart';
+import 'package:kophecy/utils/constants.dart';
 import 'package:kophecy/utils/extensions.dart';
+import 'package:kophecy/utils/log.dart';
 import 'package:kophecy/utils/text_styles.dart';
 import 'package:kophecy/view_models/quote_view_model.dart';
 import 'package:overlay_support/overlay_support.dart';
@@ -41,6 +44,7 @@ class NotificationService {
           color: AppColors.secondaryColor,
         ),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
               width: 40,
@@ -89,27 +93,41 @@ class NotificationService {
     );
     showOverlayNotification(
       (context) => toastWidget,
-      duration: const Duration(seconds: 12),
+      duration: const Duration(seconds: 8),
       position: NotificationPosition.bottom,
     );
   }
 
-  static handleQuoteNotification(RemoteMessage remoteMessage) {
-    Map data = remoteMessage.data;
+  static handleQuoteNotification(RemoteMessage remoteMessage) async {
+    try {
+      late Quote quote;
 
-    if (data.isNotEmpty && data.containsKey('quoteId')) {
-      int quoteId = (data['quoteId'] as String).toInt();
+      Map data = remoteMessage.data;
 
-      QuoteViewModel quoteViewModel =
-          Provider.of<QuoteViewModel>(Get.context!, listen: false);
+      if (data.isNotEmpty && data.containsKey('quoteId')) {
+        int quoteId = (data['quoteId'] as String).toInt();
 
-      Quote quote = quoteViewModel.quotes.where((q) => q.id == quoteId).first;
+        QuoteViewModel quoteViewModel =
+            Provider.of<QuoteViewModel>(Get.context!, listen: false);
+        if (quoteViewModel.quotes.isEmpty) {
+          quote = await APIRepository(apiUrl: Constants.apiUrl)
+              .getSingleQuote(quoteId);
+        } else {
+          quote = quoteViewModel.quotes.where((q) => q.id == quoteId).first;
+        }
 
-      if (Get.currentRoute != landing) {
-        Get.offAndToNamed(landing);
+        if (Get.currentRoute != landing) {
+          if (Get.currentRoute == splash) {
+            await Future.delayed(const Duration(milliseconds: 5700));
+          } else {
+            await Get.offNamed(landing);
+          }
+        }
+
+        quoteViewModel.selectQuote(quote);
       }
-
-      quoteViewModel.selectQuote(quote);
+    } catch (e) {
+      LogUtils.log("Error occurred when handling notification: $e");
     }
   }
 
@@ -118,6 +136,8 @@ class NotificationService {
     // a terminated state.
     RemoteMessage? initialMessage =
         await FirebaseMessaging.instance.getInitialMessage();
+
+    LogUtils.log("INITIAL MESSAGE: ${initialMessage.toString()}");
 
     // If the message also contains a data property with a "type" of "chat",
     // navigate to a chat screen

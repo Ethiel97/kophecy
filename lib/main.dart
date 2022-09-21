@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:eventify/eventify.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -6,6 +9,7 @@ import 'package:get/route_manager.dart';
 import 'package:kophecy/providers/auth_provider.dart';
 import 'package:kophecy/providers/navigation_provider.dart';
 import 'package:kophecy/providers/navigator_service.dart';
+import 'package:kophecy/providers/notification_service.dart';
 import 'package:kophecy/providers/theme_provider.dart';
 import 'package:kophecy/utils/constants.dart';
 import 'package:kophecy/utils/startup.dart';
@@ -71,9 +75,47 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     initDynamicLinkService();
+    initNotificationService();
+
+    /* Future.delayed(Duration.zero, () {
+      SystemChrome.setSystemUIOverlayStyle(
+        const SystemUiOverlayStyle(
+            // systemNavigationBarColor: Colors.blue, // navigation bar color
+            statusBarColor: Colors.transparent),
+      );
+    });*/
+  }
+
+  initNotificationService() {
+    FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+
+    firebaseMessaging.subscribeToTopic(Constants.dailyRandomQuoteTopic);
+    firebaseMessaging.subscribeToTopic(Constants.testTopic);
+
+    NotificationService.setupInteractedMessage();
+
+    FirebaseMessaging.onMessage.listen((event) {
+      NotificationService(event).showToast();
+    });
+
+    if (Platform.isIOS) {
+      firebaseMessaging
+          .requestPermission(
+            alert: true,
+            announcement: false,
+            badge: true,
+            carPlay: false,
+            criticalAlert: false,
+            provisional: false,
+            sound: true,
+          )
+          .then((value) => null)
+          .catchError((error) {
+        print(error);
+      });
+    }
   }
 
   @override

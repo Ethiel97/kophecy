@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -19,7 +16,6 @@ import 'package:kophecy/widgets/w_text_button.dart';
 import 'package:provider/provider.dart';
 import 'package:sizer/sizer.dart';
 
-import '../providers/notification_service.dart';
 import '../utils/constants.dart';
 import 'search_screen.dart';
 
@@ -33,7 +29,6 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   late NavigationProvider _navigationProvider;
   late ThemeProvider _themeProvider;
-  late FirebaseMessaging _firebaseMessaging;
 
   List<Widget> screens = [
     const QuotesScreen(key: ValueKey("quotes")),
@@ -69,34 +64,6 @@ class _MainScreenState extends State<MainScreen> {
   void initState() {
     super.initState();
 
-    _firebaseMessaging = FirebaseMessaging.instance;
-
-    _firebaseMessaging.subscribeToTopic(Constants.dailyRandomQuoteTopic);
-    _firebaseMessaging.subscribeToTopic(Constants.testTopic);
-
-    NotificationService.setupInteractedMessage();
-
-    FirebaseMessaging.onMessage.listen((event) {
-      NotificationService(event).showToast();
-    });
-
-    if (Platform.isIOS) {
-      _firebaseMessaging
-          .requestPermission(
-            alert: true,
-            announcement: false,
-            badge: true,
-            carPlay: false,
-            criticalAlert: false,
-            provisional: false,
-            sound: true,
-          )
-          .then((value) => null)
-          .catchError((error) {
-        print(error);
-      });
-    }
-
     Future.delayed(Duration.zero, () {
       SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(
@@ -105,6 +72,7 @@ class _MainScreenState extends State<MainScreen> {
         ),
       );
     });
+
   }
 
   @override
