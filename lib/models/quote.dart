@@ -100,7 +100,7 @@ class Quote extends HiveObject {
 
   set isSaved(bool saved) => this.saved = saved;
 
-  get isBookMarked => Hive.box(quotesBox).values.contains(this);
+  get isBookMarked => Hive.box(Constants.quotesBox).values.contains(this);
 }
 
 String readAuthor(String? author) {

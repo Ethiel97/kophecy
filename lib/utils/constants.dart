@@ -19,4 +19,8 @@ class Constants {
   static const dynamicLinkDomain = 'https://kophecy.page.link';
   static const kBorderRadius = 12.0;
   static const mainAuthorName = 'Ellen G. White';
+
+  static const quotesBox = 'quotes';
+  static const authorsBox = 'authors';
+  static const tagsBox = 'tags';
 }

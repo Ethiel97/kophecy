@@ -66,7 +66,7 @@ class DynamicLinkService {
       // NOT ALL ARE REQUIRED ===== HERE AS AN EXAMPLE =====
       iosParameters: const IOSParameters(
         bundleId: 'com.deventhusiast.kophecy',
-        appStoreId: '1550631505',
+        appStoreId: '6443527758',
         minimumVersion: '1.0',
       ),
       socialMetaTagParameters: SocialMetaTagParameters(

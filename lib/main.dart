@@ -23,10 +23,6 @@ import 'providers/dynamic_link_service.dart';
 import 'screens/splash_screen.dart';
 import 'utils/app_router.dart';
 
-var quotesBox = 'quotes';
-var authorsBox = 'authors';
-var tagsBox = 'tags';
-
 void main() async {
   await Startup().init();
 
