@@ -5,11 +5,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:kophecy/firebase_options.dart';
-import 'package:kophecy/main.dart';
 import 'package:kophecy/models/author.dart';
+import 'package:kophecy/models/quote.dart';
 import 'package:kophecy/models/tag.dart';
-
-import '../models/quote.dart';
+import 'package:kophecy/utils/constants.dart';
 
 Future<void> myBackgroundMessageHandler(RemoteMessage message) async {
   await Firebase.initializeApp();
@@ -40,8 +39,8 @@ class Startup {
     Hive.registerAdapter(QuoteAdapter());
     Hive.registerAdapter(TagAdapter());
     Hive.registerAdapter(AuthorAdapter());
-    await Hive.openBox<Quote>(quotesBox);
-    await Hive.openBox<Author>(authorsBox);
-    await Hive.openBox<Tag>(tagsBox);
+    await Hive.openBox<Quote>(Constants.quotesBox);
+    await Hive.openBox<Author>(Constants.authorsBox);
+    await Hive.openBox<Tag>(Constants.tagsBox);
   }
 }
