@@ -1,6 +1,6 @@
 # kophecy
 
-## A modern quotes app
+## A modern quotes app for your daily Christian walk
 
 * Fetch awesome quotes
 * Save your favorites quotes
@@ -8,5 +8,6 @@
 * Switch from dark to light mode
 
 [Playstore link](https://play.google.com/store/apps/details?id=com.deventhusiast.kophecy)
+[Appstore link](https://apps.apple.com/app/kophecy/id6443527758)
 
-![playstore screenshot](assets/img/playstore-1.jpeg)
+![App banner](assets/img/banner.jpg)
