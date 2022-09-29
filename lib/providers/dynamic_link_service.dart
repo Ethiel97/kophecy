@@ -1,4 +1,5 @@
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get/route_manager.dart';
 import 'package:kophecy/models/quote.dart';
 import 'package:kophecy/utils/app_router.dart';
@@ -55,23 +56,26 @@ class DynamicLinkService {
     final DynamicLinkParameters parameters = DynamicLinkParameters(
       uriPrefix: Constants.dynamicLinkDomain,
       link: Uri.parse(
-        'http://www.kophecy.vercel.app?quoteId=${quote.id}',
+        'https://kophecy.vercel.app?quoteId=${quote.id}',
       ),
       androidParameters: const AndroidParameters(
-        packageName: 'com.deventhusiast.kophecy',
+        packageName: Constants.appBundleName,
       ),
       navigationInfoParameters: const NavigationInfoParameters(
         forcedRedirectEnabled: true,
       ),
       // NOT ALL ARE REQUIRED ===== HERE AS AN EXAMPLE =====
       iosParameters: const IOSParameters(
-        bundleId: 'com.deventhusiast.kophecy',
+        bundleId: Constants.appBundleName,
         appStoreId: '6443527758',
         minimumVersion: '1.0',
       ),
       socialMetaTagParameters: SocialMetaTagParameters(
-        title: 'Citation Kophecy - Ellen G. White',
+        title:
+            '${AppLocalizations.of(Get.context!)!.kophecy_quote} - Ellen G. White',
         description: quote.content,
+        imageUrl: Uri.parse(
+            "https://raw.githubusercontent.com/Ethiel97/kophecy/master/assets/img/banner.jpg"),
       ),
     );
 

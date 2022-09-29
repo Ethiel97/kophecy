@@ -71,7 +71,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         'username': usernameTEC.text,
       };
 
-      await _authProvider.register(data);
+      // await _authProvider.register(data);
       //send to verify phone number
     }
   }
@@ -128,7 +128,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ],
                   ),
-
                   Container(
                     padding: EdgeInsets.only(
                       bottom: getProportionateScreenWidth(30),
@@ -237,6 +236,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           color: AppColors.darkColor,
                         ),
                       ),
+                      const SizedBox(
+                        width: 4,
+                      ),
                       InkWell(
                         child: Text(
                           AppLocalizations.of(Get.context!)!.login,
@@ -264,11 +266,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
               Positioned.fill(
-                top: (formContainerSize?.height ??
-                    0 + getProportionateScreenWidth(30)),
+                top: (getProportionateScreenHeight(400)),
                 left: 50,
                 right: 50,
-                child: Center(child: signUpButtons(theme)),
+                child: Center(
+                  child: signUpButtons(theme),
+                ),
               ),
             ],
           ),

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 class Constants {
   static const String appName = 'Kophecy';
   static String apiUrl = '${dotenv.env['API_URL']}';
+  static const String appBundleName = 'com.deventhusiast.kophecy';
   static String customApiUrl = '${dotenv.env['CUSTOM_API_URL']}';
   static String translationApiUrl = '${dotenv.env['TRANSLATION_API_URL']}';
   static String translationApiKey = '${dotenv.env['TRANSLATION_API_KEY']}';

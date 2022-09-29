@@ -19,7 +19,7 @@
   "search": "Search",
   "saved": "Saved",
   "check_out_this_quote": "Check out this quote",
-  "on_kophecy": "On kophecy",
+  "on_kophecy": "On Kophecy",
   "error_occurred": "An error occurred. Please try again later",
   "email_or_username_taken": "This email or username is already taken",
   "check_credentials": "Please check your credentials!",
@@ -42,5 +42,10 @@
   "no_account": "No account ?",
   "sop_everyday": "Spirit of prophecy in daily life",
   "strengthen_faith_description": "Get best spirit of prophecy quotes to strengthen your faith",
-  "strengthen_faith": "Strengthen your faith"
+  "strengthen_faith": "Strengthen your faith",
+  "enter_valid_email": "Please enter a valid email",
+  "field_cannot_be_empty": "This field cannot be empty",
+  "pseudo_at_least_4_characters": "Your pseudo must contain at least 4 characters",
+  "password_at_least_6_characters": "Your password must contain at least 6 characters",
+  "kophecy_quote": "Quote from Kophecy app"
 }

@@ -18,8 +18,8 @@
   "home": "Accueil",
   "search": "Recherche",
   "saved": "Favoris",
-  "check_out_this_quote": "Regardez cette citation",
-  "on_kophecy": "On kophecy",
+  "check_out_this_quote": "Découvrez cette citation",
+  "on_kophecy": "Sur Kophecy",
   "account_delete_confirmation": "Êtes-vous sûr de vouloir supprimer votre compte? Cette action est irréversible.",
   "delete_account": "Supprimer le compte",
   "logout_confirmation": "Voulez-vous vraiment vous déconnecter ?",
@@ -43,5 +43,10 @@
   "sop_everyday": "L'esprit de prophétie au quotidien",
   "error_occurred": "Une erreur est survenue. Veuillez réessayer plus tard svp!",
   "strengthen_faith_description": "Renforcez votre foi avec les meilleures citations de l'esprit de prophétie.\n",
-  "strengthen_faith": "Affermis ta foi"
+  "strengthen_faith": "Affermis ta foi",
+  "enter_valid_email": "Svp veuillez saisir un email valide",
+  "field_cannot_be_empty": "Veuillez remplir ce champ svp",
+  "pseudo_at_least_4_characters": "Votre pseudo doit contenir au moins 4 caractères",
+  "password_at_least_6_characters": "Votre mot de passe doit contenir au moins 6 caractères",
+  "kophecy_quote": "Citation de l'application Kophecy"
 }
