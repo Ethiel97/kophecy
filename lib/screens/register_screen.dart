@@ -72,7 +72,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
       };
 
       await _authProvider.register(data);
-      //send to verify phone number
     }
   }
 
