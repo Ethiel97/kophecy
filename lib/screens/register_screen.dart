@@ -71,7 +71,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         'username': usernameTEC.text,
       };
 
-      // await _authProvider.register(data);
+      await _authProvider.register(data);
       //send to verify phone number
     }
   }
